@@ -20,7 +20,9 @@ class MainActivity : BaseActivity() {
             val inputPw = pwEdt.text.toString()
 
 //             서버에 로그인 확인으로 요청
+            if (inputId !=""){
 
+            }
 
 
         }
