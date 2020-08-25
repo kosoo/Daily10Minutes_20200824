@@ -2,8 +2,10 @@ package kr.co.tjoeun.daily10minutes_20200824
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.tjoeun.daily10minutes_20200824.utils.ServerUtil
+import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
 
@@ -20,8 +22,15 @@ class MainActivity : BaseActivity() {
             val inputId = idEdt.text.toString()
             val inputPw = pwEdt.text.toString()
 
-//             서버에 로그인 확인으로 요청
-            ServerUtil.postRequestLogin(inputId, inputPw)
+//
+            ServerUtil.postRequestLogin(inputId, inputPw, object : ServerUtil.JsonResponseHandler {
+                override fun onResponse(json: JSONObject) {
+//                    실제 응답이 돌아왔을때 실행시켜줄 내용
+
+                    Log.d("메인화면에서 응답확인", json.toString())
+
+                }
+            })
 
 
         }

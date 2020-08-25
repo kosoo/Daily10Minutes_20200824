@@ -7,6 +7,10 @@ import java.io.IOException
 import java.util.*
 
 class ServerUtil {
+//    화면(액티비티)의 입장에서, 서버응답이 돌아왔을대 실행해줄 내용을 담기 위한 인터페이스
+    interface JsonResponseHandler {
+        fun onResponse(json : JSONObject)
+    }
 
     companion object{
 //        이 영역안에 만드는 변수 또는 함수는 객체를 이용하지 않고, 클래스 자체의 기능으로 활용 가능 (java의 static 처럼 활용 가능)
@@ -15,7 +19,7 @@ class ServerUtil {
         
 //        로그인 기능 => 함수 작성
         
-        fun postRequestLogin(id : String, pw : String) {
+        fun postRequestLogin(id : String, pw : String, handler : JsonResponseHandler?) {
             
 //            안드로이드 앱이 클라이언트로 동작하도록 도와주자
             val client = OkHttpClient()
@@ -54,6 +58,10 @@ class ServerUtil {
                     val json = JSONObject(bodyString)
 
                     Log.d("서버응답본문",json.toString())
+
+//                    어떤 처리를 해줄지 가이드북 (인터페이스) 이 존재한다면, 그 가이드북에 적힌 내용을 실제로 실행
+
+                    handler?.onResponse(json)
 
                 }
                 
