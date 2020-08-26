@@ -43,14 +43,21 @@ class LoginActivity : BaseActivity() {
 //                        서버 개발자가 => 로그인 성공일때는 code를 200으로 준다.
                         Log.d("로그인 시도", "성공 상황")
 
-                        val data = json.getJSONObject("data")
-                        val user = data.getJSONObject("user")
-                        val nick_name = user.getString("nick_name")
+                        //val data = json.getJSONObject("data")
+                        //val user = data.getJSONObject("user")
+                        //val nick_name = user.getString("nick_name")
 
 //                        토스트도 일종의  UI 영향 코드  => runOnUiThread 실행
-                        runOnUiThread {
-                            Toast.makeText(mContext, "닉네임 : ${nick_name}", Toast.LENGTH_SHORT).show()
-                        }
+//                        runOnUiThread {
+//                            Toast.makeText(mContext, "로그인 성공", Toast.LENGTH_SHORT).show()
+//                        }
+
+                        val myIntent = Intent(mContext, MainActivity::class.java)
+                        startActivity(myIntent)
+
+//                        메인으로 이동 후에는 로그인화면은 종료하자
+                        finish()
+
                     } else {
 //                        로그인 실패
                         Log.e("로그인 시도","실패상황")
