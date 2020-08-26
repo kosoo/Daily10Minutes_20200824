@@ -47,12 +47,15 @@ class LoginActivity : BaseActivity() {
                     val codeNum = json.getInt("code")
                     
                     if (codeNum == 200){
+
+//                        서버가 알려주는 로그인한 사용자의 토큰값을 받아서 ContextUtil의 기능으로 토큰을 저장하자
+                        val data = json.getJSONObject("data")
+                        val token = data.getString("token")
+
+                        ContextUtil.setLoginUserToken(mContext, token)
+
 //                        서버 개발자가 => 로그인 성공일때는 code를 200으로 준다.
                         Log.d("로그인 시도", "성공 상황")
-
-                        //val data = json.getJSONObject("data")
-                        //val user = data.getJSONObject("user")
-                        //val nick_name = user.getString("nick_name")
 
 //                        토스트도 일종의  UI 영향 코드  => runOnUiThread 실행
 //                        runOnUiThread {
