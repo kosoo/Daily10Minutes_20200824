@@ -27,9 +27,7 @@ class SignUpActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-
-
-        signUpBtn.setOnClickListener {
+        signUpBtn2.setOnClickListener {
 
 //            아이디를 사용해도 되는지? (중복검사)
             if (!isIdOk) {
@@ -48,8 +46,34 @@ class SignUpActivity : BaseActivity() {
             val alert = AlertDialog.Builder(mContext)
             alert.setTitle("회원가입 안내")
             alert.setMessage("닉네임은 한번 정하면 변경이 불가능합니다. 정말 회원가입 하시겠습니까?")
-            alert.setPositiveButton("확인",
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+
+                val inputId = signUpEmailEdt.text.toString()
+                val inputPw = signUpPasswordEdt.text.toString()
+                val inputNickName = nickNameEdt.text.toString()
+
 //                실제 히원가입 기능 (API) 호출
+                ServerUtil.putRequestSignUp(inputId, inputPw, inputNickName, object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(json: JSONObject) {
+//                        1. 회원가입 성공 : "회원이 되신것을 환영합니다." 토스트 + 로그인화면 복귀
+//                        2. 회원가입에 실패한 경우, 왜 실패했는지 서버가 알려주는 메세지를 토스트로 출력
+
+                        val code = json.getInt("code")
+                        val message = json.getString("message")
+
+                        runOnUiThread {
+                            if (code == 200){
+                                Toast.makeText(mContext, "회원이 되신것을 환영합니다.", Toast.LENGTH_SHORT).show()
+                                finish() //복귀처리
+                            } else {
+                                Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                    }
+
+                })
+            })
             alert.setNegativeButton("취소",  null)
             alert.show()
 
@@ -119,7 +143,6 @@ class SignUpActivity : BaseActivity() {
                 }
             })
         }
-
 
 
     }
