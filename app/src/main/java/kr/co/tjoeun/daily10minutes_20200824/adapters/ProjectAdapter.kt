@@ -22,7 +22,6 @@ class ProjectAdapter(
 
         if (tempRow == null) {
             tempRow = inf.inflate(R.layout.project_list_item, null)
-
         }
 
         val row = tempRow!!

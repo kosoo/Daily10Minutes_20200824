@@ -1,5 +1,6 @@
 package kr.co.tjoeun.daily10minutes_20200824.utils
 
+import android.content.Context
 import android.util.Log
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -7,7 +8,7 @@ import org.json.JSONObject
 import java.io.IOException
 import java.util.*
 
-class ServerUtil {
+open class ServerUtil {
 //    화면(액티비티)의 입장에서, 서버응답이 돌아왔을대 실행해줄 내용을 담기 위한 인터페이스
     interface JsonResponseHandler {
         fun onResponse(json : JSONObject)
@@ -70,46 +71,6 @@ class ServerUtil {
             
         }
 
-        fun getRequestEmailCheck(emailAddress : String, handler: JsonResponseHandler?) {
-//            서버에 Request를 날려주는 클라이언트 역할을 돕는 변수
-            val client = OkHttpClient()
-
-//            url (호스트주소 + 기능주소)을 만드는 과정에서 필요 파라미터도 가공 - 첨부
-//            val urlBuilder = HttpUrl.parse("${BASE_URL}/email_check")
-            val urlBuilder = "${BASE_URL}/email_check".toHttpUrlOrNull()!!.newBuilder()
-//            url 가공기를 이용해서 => 필요 데이터 첨부
-            urlBuilder.addEncodedQueryParameter("email",emailAddress)
-
-//            가공이 끝난 url을 => urlStr으로 완성
-            val urlStr = urlBuilder.build().toString()
-
-//            임시 : 어떻게 url.이 가공되었는지 로그를 확인
-            Log.d("완성된url", urlStr)
-
-//            요청 정보를 담는 request
-            val request = Request.Builder()
-                .url(urlStr)
-                .get()
-                .build()
-
-            client.newCall(request).enqueue(object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
-                }
-
-                override fun onResponse(call: Call, response: Response) {
-                    val bodyString = response.body!!.string()
-
-                    val json = JSONObject(bodyString)
-
-                    Log.d("서버응답본문", json.toString())
-
-                    handler?.onResponse(json)
-                }
-
-            })
-
-        }
-
         fun putRequestSignUp(id : String, pw : String, nickName : String, handler : JsonResponseHandler?) {
 
 //            안드로이드 앱이 클라이언트로 동작하도록 도와주자
@@ -155,6 +116,87 @@ class ServerUtil {
 
                     handler?.onResponse(json)
 
+                }
+
+            })
+
+        }
+
+        fun getRequestEmailCheck(emailAddress : String, handler: JsonResponseHandler?) {
+//            서버에 Request를 날려주는 클라이언트 역할을 돕는 변수
+            val client = OkHttpClient()
+
+//            url (호스트주소 + 기능주소)을 만드는 과정에서 필요 파라미터도 가공 - 첨부
+//            val urlBuilder = HttpUrl.parse("${BASE_URL}/email_check")
+            val urlBuilder = "${BASE_URL}/email_check".toHttpUrlOrNull()!!.newBuilder()
+//            url 가공기를 이용해서 => 필요 데이터 첨부
+            urlBuilder.addEncodedQueryParameter("email",emailAddress)
+
+//            가공이 끝난 url을 => urlStr으로 완성
+            val urlStr = urlBuilder.build().toString()
+
+//            임시 : 어떻게 url.이 가공되었는지 로그를 확인
+            Log.d("완성된url", urlStr)
+
+//            요청 정보를 담는 request
+            val request = Request.Builder()
+                .url(urlStr)
+                .get()
+                .build()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+
+                    val json = JSONObject(bodyString)
+
+                    Log.d("서버응답본문", json.toString())
+
+                    handler?.onResponse(json)
+                }
+
+            })
+
+        }
+
+        fun getRequestProjectList(context: Context, handler: JsonResponseHandler?) {
+//            서버에 Request를 날려주는 클라이언트 역할을 돕는 변수
+            val client = OkHttpClient()
+
+//            url (호스트주소 + 기능주소)을 만드는 과정에서 필요 파라미터도 가공 - 첨부
+//            val urlBuilder = HttpUrl.parse("${BASE_URL}/project")
+            val urlBuilder = "${BASE_URL}/project".toHttpUrlOrNull()!!.newBuilder()
+//            url 가공기를 이용해서 => 필요 데이터 첨부
+            //urlBuilder.addEncodedQueryParameter("email",emailAddress)
+
+//            가공이 끝난 url을 => urlStr으로 완성
+            val urlStr = urlBuilder.build().toString()
+
+//            임시 : 어떻게 url.이 가공되었는지 로그를 확인
+            Log.d("완성된url", urlStr)
+
+//            요청 정보를 담는 request
+            val request = Request.Builder()
+                .url(urlStr)
+                .get()
+                .header("X-Http-Token", ContextUtil.getLoginUserToken(context))
+                .build()
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val bodyString = response.body!!.string()
+
+                    val json = JSONObject(bodyString)
+
+                    Log.d("서버응답본문", json.toString())
+
+                    handler?.onResponse(json)
                 }
 
             })
