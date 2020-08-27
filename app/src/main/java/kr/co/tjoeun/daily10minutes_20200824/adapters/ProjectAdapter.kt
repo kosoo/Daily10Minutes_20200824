@@ -37,13 +37,9 @@ class ProjectAdapter(
         val data = mList[position]
 
         //img = data.imageUrl
-        //img.src = Glide.with(this).load(img).into(imageView)
+        Glide.with(mContext).load(data.imageUrl).into(img)
         titleTxt.text = data.title
         desctiponTxt.text = data.description
-
-
-
-
 
         return row
 
