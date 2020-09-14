@@ -21,8 +21,6 @@ class MyFCMService : FirebaseMessagingService() {
         Log.d("", p0.notification?.title.toString())
         Log.d("", p0.notification?.body.toString())
 
-        val myHandler2 = Handler(Looper.getMainLooper())
-
         val myHandler = android.os.Handler(Looper.getMainLooper())
 
 //        메인 쓰레드 - UI쓰레드를 돌아주는 myHandler를 통해 토스트 출력
