@@ -86,6 +86,7 @@ class MainActivity : BaseActivity() {
                     project.imageUrl = projectObj.getString("img_url")
                     project.description = projectObj.getString("description")
 
+
                     mProjectList.add(project)
                 }
 
