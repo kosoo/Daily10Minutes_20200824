@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "113778829718",
+    "firebase_url": "https://daily10minutes20200824-26eeb.firebaseio.com",
+    "project_id": "daily10minutes20200824-26eeb",
+    "storage_bucket": "daily10minutes20200824-26eeb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113778829718:android:d5cace8e6c271f2c5595b7",
+        "android_client_info": {
+          "package_name": "kr.co.tjoeun.daily10minutes_20200824"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113778829718-s4m0uh3lo9dc8ncee72ber9oumvqhqa0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.co.tjoeun.daily10minutes_20200824",
+            "certificate_hash": "bac32a6e514d87d08e6d8bf3e11dbe4edf967393"
+          }
+        },
+        {
+          "client_id": "113778829718-b1oik8kh756s7uv4dhvgk5531886bnoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKEraZwc6aAOLQ06sXjLsJxJtfY4XpXwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113778829718-b1oik8kh756s7uv4dhvgk5531886bnoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

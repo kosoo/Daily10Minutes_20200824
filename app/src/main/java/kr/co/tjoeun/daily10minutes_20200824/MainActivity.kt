@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.tjoeun.daily10minutes_20200824.adapters.ProjectAdapter
 import kr.co.tjoeun.daily10minutes_20200824.datas.Project
@@ -47,7 +48,12 @@ class MainActivity : BaseActivity() {
         }
     }
 
+
+
     override fun setValues() {
+
+//        등록된 기기 토큰이 어떤건지 확인
+        Log.d("기기토큰", FirebaseInstanceId.getInstance().token!!)
 
         getProjectListFromServer()
 
