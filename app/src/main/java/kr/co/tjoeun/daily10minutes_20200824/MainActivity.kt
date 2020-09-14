@@ -80,11 +80,14 @@ class MainActivity : BaseActivity() {
                 for (i in 0 until projectArr.length()){
                     val projectObj = projectArr.getJSONObject(i)
 
-                    val project = Project()
+                    /*val project = Project()
                     project.id = projectObj.getInt("id")
                     project.title = projectObj.getString("title")
                     project.imageUrl = projectObj.getString("img_url")
                     project.description = projectObj.getString("description")
+                    */
+
+                    val project = Project.getProjectFromJson()
 
 
                     mProjectList.add(project)
