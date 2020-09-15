@@ -23,6 +23,12 @@ class ViewProjectDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+//        참여중인 사람 리스트 보기
+        viewAllMembersBtn.setOnClickListener {
+            
+
+
+        }
 
 //        신청하기 버튼을 누르면 => 정말 신청할건지? 확인(AlertDialog)하고-> 확인되면 신청처리
         applyBtn.setOnClickListener {
