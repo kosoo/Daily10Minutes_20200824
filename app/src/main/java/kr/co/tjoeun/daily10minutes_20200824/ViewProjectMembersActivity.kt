@@ -4,8 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_view_project_detail.*
+import kr.co.tjoeun.daily10minutes_20200824.datas.Project
+import kr.co.tjoeun.daily10minutes_20200824.datas.User
 
 class ViewProjectMembersActivity : BaseActivity() {
+
+//    프로젝트 상세화면에서 넘겨준, 프로젝트 데이터를 담기 위한 멤버변수
+    lateinit var mProject : Project
+
+    val mProjectMembers = ArrayList<User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,12 +22,19 @@ class ViewProjectMembersActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
-        viewAllMembersBtn.setOnClickListener {
-
-            val myIntent = Intent(mContext, ViewProjectMembersActivity::class.java)
-        }
     }
 
     override fun setValues() {
+
+        mProject = intent.getSerializableExtra("project") as Project
+
+        getProjectMembersFromServer()
+
+    }
+
+//    서버에서 프로젝트의 참여 멤버 불러오는 기능
+    fun getProjectMembersFromServer(){
+
+
     }
 }

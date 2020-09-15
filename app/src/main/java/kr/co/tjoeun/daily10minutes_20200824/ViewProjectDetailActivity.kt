@@ -2,6 +2,7 @@ package kr.co.tjoeun.daily10minutes_20200824
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -25,9 +26,10 @@ class ViewProjectDetailActivity : BaseActivity() {
     override fun setupEvents() {
 //        참여중인 사람 리스트 보기
         viewAllMembersBtn.setOnClickListener {
-            
-
-
+            val myIntent = Intent(mContext, ViewProjectMembersActivity::class.java)
+//            어떤 프로젝트의 멤버들을 보고싶은지 전달
+            myIntent.putExtra("project", mProject)
+            startActivity(myIntent)
         }
 
 //        신청하기 버튼을 누르면 => 정말 신청할건지? 확인(AlertDialog)하고-> 확인되면 신청처리
