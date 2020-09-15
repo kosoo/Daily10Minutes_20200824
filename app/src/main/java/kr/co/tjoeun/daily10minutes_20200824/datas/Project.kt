@@ -24,7 +24,7 @@ class Project : Serializable {
             project.title = json.getString("title")
             project.imageUrl = json.getString("img_url")
             project.description = json.getString("description")
-            project.proofMethod = json.getString("proof_Method")
+            project.proofMethod = json.getString("proof_method")
             project.onGoingMemberCount = json.getInt("ongoing_users_count")
 
 //            서버에서 주는 데이터가 null 일수 있거나
