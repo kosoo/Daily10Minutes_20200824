@@ -12,6 +12,10 @@ class Proof {
 //    이 게시글을 쓴 사람의 정보
     lateinit var writer : User
 
+//    댓글 달린 갯수 / 좋아요 갯수
+    var replyCount = 0
+    var likeCount = 0
+
     companion object{
 
         fun getProofFromJson(json: JSONObject) : Proof {
@@ -29,6 +33,10 @@ class Proof {
 //            인증글의 작성자 정보 파싱
             val userObj = json.getJSONObject("user")
             proof.writer = User.getUserFromJson(userObj)
+
+//            댓글 / 좋아요 갯수 파싱
+            proof.replyCount = json.getInt("reply_count")
+            proof.likeCount = json.getInt("like_count")
 
             return proof
         }
