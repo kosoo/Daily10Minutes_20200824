@@ -38,23 +38,14 @@ class ProofAdapter(
         val data = mList[position]
 
         proofContentTxt.text = data.content
-        //Glide.with(mContext).load()
-
-
-        /*val userFirstProfileImg = row.findViewById<ImageView>(R.id.userFirstProfileImg)
-        val userNickNameTxt = row.findViewById<TextView>(R.id.userNickNameTxt)
-        val userEmailTxt = row.findViewById<TextView>(R.id.userEmailTxt)
-
-        val user = mList[position]
-
-        userNickNameTxt.text = user.nickName
-        userEmailTxt.text = user.email
-
-        Glide.with(mContext).load(user.profileImagesArrayList[0]).into(userFirstProfileImg)*/
-
-
+//       첨부된 이미지뷰가 있다면, 이미지뷰를 화면에 표시, 인증글에 사진이 없다면 이미지뷰를 숨김처리
+        if (data.imgList.size == 0){
+            proofFirstImg.visibility = View.GONE //숨김처리
+        }else{
+            proofFirstImg.visibility = View.VISIBLE
+            Glide.with(mContext).load(data.imgList[0]).into(proofFirstImg)
+        }
 
         return row
-
     }
 }
