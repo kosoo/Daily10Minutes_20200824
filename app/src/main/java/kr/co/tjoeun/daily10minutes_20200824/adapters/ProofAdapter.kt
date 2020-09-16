@@ -32,6 +32,15 @@ class ProofAdapter(
 
         val row = tempRow!!
 
+        val proofContentTxt = row.findViewById<TextView>(R.id.proofContentTxt)
+        val proofFirstImg = row.findViewById<ImageView>(R.id.proofFirstImg)
+
+        val data = mList[position]
+
+        proofContentTxt.text = data.content
+        //Glide.with(mContext).load()
+
+
         /*val userFirstProfileImg = row.findViewById<ImageView>(R.id.userFirstProfileImg)
         val userNickNameTxt = row.findViewById<TextView>(R.id.userNickNameTxt)
         val userEmailTxt = row.findViewById<TextView>(R.id.userEmailTxt)

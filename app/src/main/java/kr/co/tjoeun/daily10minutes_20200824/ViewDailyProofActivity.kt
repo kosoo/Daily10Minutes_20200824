@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_view_daily_proof.*
+import kr.co.tjoeun.daily10minutes_20200824.adapters.ProofAdapter
 import kr.co.tjoeun.daily10minutes_20200824.datas.Project
 import kr.co.tjoeun.daily10minutes_20200824.datas.Proof
 import kr.co.tjoeun.daily10minutes_20200824.utils.ServerUtil
@@ -17,6 +18,9 @@ class ViewDailyProofActivity : BaseActivity() {
     lateinit var mProject : Project
 
     val mProofList = ArrayList<Proof>()
+
+    lateinit var mProofAdapter : ProofAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +74,9 @@ class ViewDailyProofActivity : BaseActivity() {
 
     override fun setValues() {
 
+        mProofAdapter = ProofAdapter(mContext, R.layout.project_list_item, mProofList)
+        proofListView.adapter = mProofAdapter
+
         mProject = intent.getSerializableExtra("project") as Project
 
 //        이 화면이 실행되면 오늘날짜를 => 2020년 9월 5일 양식으로 selectedDateTxt에 출력
@@ -85,18 +92,23 @@ class ViewDailyProofActivity : BaseActivity() {
     fun getProofListByDate(date: String){
 
         ServerUtil.getRequestProjectProofByIdAndDate(mContext, mProject.id, date, object : ServerUtil.JsonResponseHandler {
-                override fun onResponse(json: JSONObject) {
+            override fun onResponse(json: JSONObject) {
 
-                    val dataObj = json.getJSONObject("data")
-                    val projectObj = dataObj.getJSONObject("project")
+                val dataObj = json.getJSONObject("data")
+                val projectObj = dataObj.getJSONObject("project")
 
-                    val proofsJsonArr = projectObj.getJSONArray("proofs")
+                val proofsJsonArr = projectObj.getJSONArray("proofs")
 
-                    for (i in 0 until proofsJsonArr.length()){
-                        val proof = Proof.getProofFromJson(proofsJsonArr.getJSONObject(i))
-                        mProofList.add(proof)
-                    }
+                for (i in 0 until proofsJsonArr.length()){
+                    val proof = Proof.getProofFromJson(proofsJsonArr.getJSONObject(i))
+                    mProofList.add(proof)
                 }
-            })
+
+                runOnUiThread {
+                    mProofAdapter.notifyDataSetChanged()
+                }
+            }
+
+        })
     }
 }
