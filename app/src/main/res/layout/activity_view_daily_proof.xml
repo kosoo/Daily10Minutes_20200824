@@ -20,6 +20,7 @@
             android:textColor="@color/darkGray"/>
 
         <TextView
+            android:id="@+id/selectedDateTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="2020-09-15"
