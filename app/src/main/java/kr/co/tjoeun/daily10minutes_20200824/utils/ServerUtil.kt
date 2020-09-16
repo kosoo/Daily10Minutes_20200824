@@ -253,7 +253,7 @@ open class ServerUtil {
 //            url (호스트주소 + 기능주소)을 만드는 과정에서 필요 파라미터도 가공 - 첨부
             val urlBuilder = "${BASE_URL}/project/${projectId}".toHttpUrlOrNull()!!.newBuilder()
 //            url 가공기를 이용해서 => 필요 데이터 첨부
-            urlBuilder.addEncodedQueryParameter("need_all_users", "true")
+            urlBuilder.addEncodedQueryParameter("need_user_list", "true")
 
 //            가공이 끝난 url을 => urlStr으로 완성
             val urlStr = urlBuilder.build().toString()

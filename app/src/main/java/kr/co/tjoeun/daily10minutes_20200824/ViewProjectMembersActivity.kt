@@ -3,6 +3,7 @@ package kr.co.tjoeun.daily10minutes_20200824
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_view_project_detail.*
 import kotlinx.android.synthetic.main.activity_view_project_members.*
 import kr.co.tjoeun.daily10minutes_20200824.adapters.ProjectMemberAdapter
@@ -41,35 +42,41 @@ class ViewProjectMembersActivity : BaseActivity() {
     }
 
 //    서버에서 프로젝트의 참여 멤버 불러오는 기능
-    fun getProjectMembersFromServer(){
+    fun getProjectMembersFromServer() {
 
-        ServerUtil.getRequestProjectMemberById(mContext, mProject.id, object : ServerUtil.JsonResponseHandler{
+        ServerUtil.getRequestProjectMemberById(mContext, mProject.id, object : ServerUtil.JsonResponseHandler {
             override fun onResponse(json: JSONObject) {
 
                 val data = json.getJSONObject("data")
                 val projectObj = data.getJSONObject("project")
 
-                val ongoingUserArr = projectObj.getJSONArray("ongoing_users")
+                val ongoingUsersArr = projectObj.getJSONArray("ongoing_users")
 
-                for (i in 0 until ongoingUserArr.length()){
+                for (i in 0 until ongoingUsersArr.length()) {
 
-                    val memberObj = ongoingUserArr.getJSONObject(i)
+                    val memberObj = ongoingUsersArr.getJSONObject(i)
 
-//                    memberObj => User 형태로 변환 => ArrayList에 추가
+    //                    memberObj => User 형태로 변환 => ArrayList에 추가
 
                     val user = User.getUserFromJson(memberObj)
 
+
                     mProjectMembers.add(user)
+
+
                 }
 
-//                프로젝트 멤버들이 추가되었으니 => 리스트뷰에 새로 반영 처리
-//                서버 통신중 UI에 영향 => runOnUiThread 처리
+    //                프로젝트 멤버들이 추가되었으니 => 리스트뷰에 새로 반영 처리.
+    //                서버 통신중 UI에 영향 => runOnUiThread로 처리하자.
+
                 runOnUiThread {
                     mAdapter.notifyDataSetChanged()
                 }
 
 
+
             }
+
         })
 
     }
