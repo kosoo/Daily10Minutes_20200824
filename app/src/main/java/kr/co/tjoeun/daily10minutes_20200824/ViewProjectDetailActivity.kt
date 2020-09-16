@@ -117,7 +117,7 @@ class ViewProjectDetailActivity : BaseActivity() {
     fun refreshProjectDataUI(){
 
         proofMethodTxt.text = mProject.proofMethod
-        onGoingMemberCountTxt.text = "(현재 참여 인원 : ${mProject.onGoingMemberCount}명"
+        onGoingMemberCountTxt.text = "(현재 참여 인원 : ${mProject.onGoingMemberCount}명)"
 
     //                    myLastStatus =>  마지막으로 변경된 프로젝트 신청상태
     //                    NULL : 신청한적이 없다.
