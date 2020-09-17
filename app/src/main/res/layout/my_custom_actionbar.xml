@@ -12,4 +12,17 @@
         android:textColor="@color/white"
         android:layout_gravity="center"/>
 
+    <ImageView
+        android:id="@+id/notiImg"
+        android:visibility="gone"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="8dp"
+        android:src="@drawable/noti_img"
+        android:layout_gravity="right|center"
+        android:layout_marginRight="10dp"
+
+        />
+
+
 </FrameLayout>

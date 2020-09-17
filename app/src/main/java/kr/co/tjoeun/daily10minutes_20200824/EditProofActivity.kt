@@ -30,7 +30,7 @@ class EditProofActivity : BaseActivity() {
 
                     val code = json.getInt("code")
 
-                    if (code==200){
+                    if (code == 200){
                         finish()
                     }else{
 //                        인증글 등록 실패시 실패 사유 토스트

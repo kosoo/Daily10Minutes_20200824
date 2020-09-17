@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
@@ -63,6 +64,8 @@ class MainActivity : BaseActivity() {
 
 
     override fun setValues() {
+
+        notiImg.visibility = View.VISIBLE
 
 //        등록된 기기 토큰이 어떤건지 확인
         Log.d("기기토큰", FirebaseInstanceId.getInstance().token!!)

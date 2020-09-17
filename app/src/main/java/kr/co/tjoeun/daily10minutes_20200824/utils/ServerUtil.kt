@@ -439,7 +439,7 @@ open class ServerUtil {
 //            파라미터들을 담아주자 => POST(PUT/PATCH) - formData 활용
             val formData = FormBody.Builder()
                 .add("project_id", projectId.toString()) //숫자는 문자로 변환
-                .add("project_id", content)
+                .add("content", content)
                 .build()
 
 //            목적지의 정보를 Request 형태로 완성하자 (티켓 최종 발권)
