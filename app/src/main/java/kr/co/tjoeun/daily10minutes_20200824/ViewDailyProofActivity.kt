@@ -1,6 +1,7 @@
 package kr.co.tjoeun.daily10minutes_20200824
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -30,6 +31,12 @@ class ViewDailyProofActivity : BaseActivity() {
         setValues()
     }
     override fun setupEvents() {
+
+        writerProofBtn.setOnClickListener {
+            val myIntent = Intent(mContext, EditProofActivity::class.java)
+            myIntent.putExtra("project", mProject)
+            startActivity(myIntent)
+        }
 
         selectDateBtn.setOnClickListener {
 
