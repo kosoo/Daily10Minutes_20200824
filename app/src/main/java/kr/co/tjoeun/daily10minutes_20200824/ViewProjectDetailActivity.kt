@@ -21,6 +21,7 @@ class ViewProjectDetailActivity : BaseActivity() {
         setContentView(R.layout.activity_view_project_detail)
         setupEvents()
         setValues()
+        setCustomActionBar()
     }
 
     override fun setupEvents() {
