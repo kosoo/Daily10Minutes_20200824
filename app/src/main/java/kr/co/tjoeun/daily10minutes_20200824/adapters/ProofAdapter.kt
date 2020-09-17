@@ -68,8 +68,10 @@ class ProofAdapter(
 //        회색(내가좋아요.X) 빨간테두리 (내가좋아요O)
         if (data.isMyLikeProof){
             likeBtn.setBackgroundResource(R.drawable.red_border_box)
+            likeBtn.setTextColor(mContext.resources.getColor(R.color.red))
         } else {
             likeBtn.setBackgroundResource(R.drawable.gray_border_box)
+            likeBtn.setTextColor(mContext.resources.getColor(R.color.darkGray))
         }
 
 //        좋아요 버튼이 눌리면 => Like_proof -POST호출하도록
